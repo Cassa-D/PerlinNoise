@@ -23,6 +23,7 @@ public class LitCube implements Scene {
     private Camera camera = new Camera();
     private DirectionalLight light;
     private Material material;
+    private int size = 550;
 
     @Override
     public void init() {
@@ -32,7 +33,6 @@ public class LitCube implements Scene {
 
         shader = Shader.loadProgram("phong");
 
-        int size = 550;
 
         mesh = MeshFactory.createTerrain(shader, size + 100, size + 100, 0.2f, 0.012f);
         camera.getPosition().y = size;
@@ -43,8 +43,8 @@ public class LitCube implements Scene {
                 .setColor(1.0f, 1.0f, 0.8f);
 
         material = new Material()
-                .setColor(1.0f)
-                .setPower(32.0f);
+                .setColor(0.9f, 1.0f, 0.9f)
+                .setPower(0);
     }
 
     @Override
@@ -68,7 +68,31 @@ public class LitCube implements Scene {
 
         if (keys.isDown(GLFW_KEY_R)) {
             MeshFactory.refreshSeed();
-            mesh = MeshFactory.createTerrain(shader, 250, 250, 0.2f, 0.012f);
+            mesh = MeshFactory.createTerrain(shader, size + 100, size + 100, 0.2f, 0.012f);
+        }
+
+        // =
+        if (keys.isDown(GLFW_KEY_EQUAL)) {
+            if (size < 2000) {
+                size += size * 10 / 100;
+
+                camera.getPosition().y = size;
+                camera.getPosition().z = -size;
+
+                mesh = MeshFactory.createTerrain(shader, size + 100, size + 100, 0.2f, 0.012f);
+            }
+        }
+
+        // -
+        if (keys.isDown(GLFW_KEY_MINUS)) {
+            if (size > 100) {
+                size -= size * 10 / 100;
+
+                camera.getPosition().y = size;
+                camera.getPosition().z = -size;
+
+                mesh = MeshFactory.createTerrain(shader, size + 100, size + 100, 0.2f, 0.012f);
+            }
         }
     }
 

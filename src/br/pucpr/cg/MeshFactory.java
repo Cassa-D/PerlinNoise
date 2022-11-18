@@ -19,6 +19,7 @@ public class MeshFactory {
     public static void refreshSeed() {
         PerlinNoise.refreshSeed();
     }
+
     public static Mesh createTerrain(Shader shader, int width, int height, float size, float scale) {
         try {
             var depth = height;

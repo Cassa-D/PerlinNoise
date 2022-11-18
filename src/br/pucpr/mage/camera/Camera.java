@@ -25,7 +25,7 @@ public class Camera implements ShaderItem {
     private Vector3f target = new Vector3f(0,0,0);      //POSIÇÃO para onde a camera olha
     private float fov = toRadians(60.f);                  //Angulo de abertura em y
     private float near = 0.1f;                                    //Distancia mais proxima que a camera enxerga
-    private float far = 1000.0f;                                  //Distancia mais afastada que a camera enxerga
+    private float far = 5000.0f;                                  //Distancia mais afastada que a camera enxerga
 
     /**
      * @return A posição da câmera no mundo
